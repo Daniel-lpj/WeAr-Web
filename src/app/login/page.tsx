@@ -26,6 +26,7 @@ const Login = () => {
 
       if (response.status === 200) {
         alert("Login bem-sucedido!");
+        window.location.href = "/roupa";
       } else {
         alert("Falha no login. Verifique sua senha.");
       }
