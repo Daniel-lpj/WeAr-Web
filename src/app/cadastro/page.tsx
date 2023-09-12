@@ -28,6 +28,7 @@ const Cadastro = () => {
 
       if (response.status === 201) {
         alert("Cadastro bem-sucedido!");
+        window.location.href = "/login";
       } else {
         alert("Falha no cadastro. Verifique seus dados.");
       }
