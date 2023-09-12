@@ -21,15 +21,6 @@ const Roupa = () => {
       );
   }, []);
 
-  // useEffect(() => {
-  //   fetch(`http://localhost:8080/api/roupas/${id}`)
-  //     .then((response) => response.json())
-  //     .then((data) => setRoupa(data))
-  //     .catch((error) =>
-  //       console.error("Erro ao buscar detalhes da peça de roupa:", error)
-  //     );
-  // }, []);
-
   return (
     <>
       <NavBar active={"roupa"} />
@@ -38,16 +29,18 @@ const Roupa = () => {
           <div className="bg-slate-300 p-6 text-xl font-bold flex justify-between items-center">
             Roupa
           </div>
-          <div className="bg-slate-300 p-4 rounded shadow-md">
+          <div className="bg-slate-300 p-4 rounded flex shadow-md">
             {roupa ? (
               roupa?.map((item) => (
                 <>
-                  <img
-                    src="https://firebasestorage.googleapis.com/v0/b/unify-v3-copy.appspot.com/o/zhudrauta38-2%3A10?alt=media&token=59e33f30-f34c-4d9a-941f-75fbee401a9a"
-                    alt="Camisa"
-                  />
-                  <p className="text-lg mb-4">Tamanho: {item?.tamanho}</p>
-                  <p className="text-lg">Cor: {item?.cor}</p>
+                  <div className="bg-slate-300 m-2 rounded flex flex-col p-4 shadow-md">
+                    <img
+                      src="https://firebasestorage.googleapis.com/v0/b/unify-v3-copy.appspot.com/o/zhudrauta38-2%3A10?alt=media&token=59e33f30-f34c-4d9a-941f-75fbee401a9a"
+                      alt="Camisa"
+                    />
+                    <p className="text-lg mb-4">Tamanho: {item?.tamanho}</p>
+                    <p className="text-lg">Cor: {item?.cor}</p>
+                  </div>
                 </>
               ))
             ) : (
