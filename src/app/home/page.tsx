@@ -7,6 +7,11 @@ const Home = () => {
       <NavBar active={"home"} />
       <div className="flex justify-center items-center h-screen">
         <div className="bg-gray-200 p-4 rounded-lg">
+          <div className="bg-slate-300 p-6 flex justify-center items-center">
+            <Link className="#000000 font-bold ml-1" href="/login">
+              Entrar
+            </Link>
+          </div>
           <div className="bg-slate-300 p-6 flex items-center">
             <p>
               Não tem uma conta?
