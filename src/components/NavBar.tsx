@@ -1,6 +1,8 @@
+"use client";
+
 import Link from "next/link";
 
-export default function NavBar({ active }: any) {
+export default function NavBar() {
   return (
     <nav className="bg-slate-600 p-6 flex justify-between items-center">
       <ul className="flex gap-12 items-end text-slate-100 text-sm">

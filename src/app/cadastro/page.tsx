@@ -1,5 +1,6 @@
 "use client";
 
+import { api } from "@/api/api";
 import NavBar from "@/components/NavBar";
 import { FormEvent, useState } from "react";
 
@@ -18,13 +19,7 @@ const Cadastro = () => {
     };
 
     try {
-      const response = await fetch("http://localhost:8080/api/registrar", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+      const response = await api.post("/registrar", data);
 
       if (response.status === 201) {
         alert("Cadastro bem-sucedido!");
@@ -40,7 +35,7 @@ const Cadastro = () => {
 
   return (
     <>
-      <NavBar active={"cadastro"} />
+      <NavBar />
       <div className="flex justify-center items-center h-screen">
         <div className="bg-gray-200 p-4 rounded-lg">
           <div className="bg-slate-300 p-6 text-xl font-bold flex justify-between items-center">

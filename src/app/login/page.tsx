@@ -1,44 +1,48 @@
 "use client";
 
+import { useMyContext } from "@/Context/store";
+import { api } from "@/api/api";
 import NavBar from "@/components/NavBar";
+import { useRouter } from "next/router";
 import { FormEvent, useState } from "react";
 
 const Login = () => {
   const [email, setEmail] = useState<string>("");
   const [senha, setSenha] = useState<string>("");
 
+  const { setToken } = useMyContext();
+
+  const router = useRouter();
+
   const handleLogin = async (e: FormEvent) => {
-    e.preventDefault();
+    if (typeof window !== "undefined") {
+      e.preventDefault();
 
-    const data = {
-      email: email,
-      senha: senha,
-    };
+      const data = {
+        email: email,
+        senha: senha,
+      };
 
-    try {
-      const response = await fetch("http://localhost:8080/api/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+      try {
+        const response = await api.post("/login", data);
 
-      if (response.status === 200) {
-        alert("Login bem-sucedido!");
-        window.location.href = "/roupa";
-      } else {
-        alert("Falha no login. Verifique sua senha.");
+        if (response.status === 200) {
+          alert("Login bem-sucedido!");
+          setToken(response?.data?.token);
+          router.push("/roupa");
+        } else {
+          alert("Falha no login. Verifique sua senha.");
+        }
+      } catch (error) {
+        console.error("Erro ao fazer login:", error);
+        alert("Erro ao fazer login. Tente novamente mais tarde.");
       }
-    } catch (error) {
-      console.error("Erro ao fazer login:", error);
-      alert("Erro ao fazer login. Tente novamente mais tarde.");
     }
   };
 
   return (
     <>
-      <NavBar active={"login"} />
+      <NavBar />
       <div className="flex justify-center items-center h-screen">
         <div className="bg-gray-200 p-4 rounded-lg">
           <div className="bg-slate-300 p-6 text-xl font-bold flex justify-between items-center">
