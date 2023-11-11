@@ -3,7 +3,6 @@
 import { useMyContext } from "@/Context/store";
 import { api } from "@/api/api";
 import NavBar from "@/components/NavBar";
-import { useRouter } from "next/router";
 import { FormEvent, useState } from "react";
 
 const Login = () => {
@@ -11,8 +10,6 @@ const Login = () => {
   const [senha, setSenha] = useState<string>("");
 
   const { setToken } = useMyContext();
-
-  const router = useRouter();
 
   const handleLogin = async (e: FormEvent) => {
     if (typeof window !== "undefined") {
@@ -29,7 +26,8 @@ const Login = () => {
         if (response.status === 200) {
           alert("Login bem-sucedido!");
           setToken(response?.data?.token);
-          router.push("/roupa");
+          setEmail("");
+          setSenha("");
         } else {
           alert("Falha no login. Verifique sua senha.");
         }
